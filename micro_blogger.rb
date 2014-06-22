@@ -8,7 +8,25 @@ class MicroBlogger
 		@client = JumpstartAuth.twitter
 	end
 
-	def tweet
+	def run
+		puts "Welcome to the microblogger"
+		command = ""
+		while command != "q"
+			printf "enter command: "
+			input = gets.chomp
+			parts = input.split(" ")
+			command = parts[0]
+
+		case command
+			when 'q' then puts "Goodbye!"
+			when 't' then tweet(parts[1..-1].join(" "))
+			else
+				puts "Sorry, I don't know how to #{command}"
+		end
+	end
+	end
+
+	def tweet(message)
 		user_input = gets.chomp
 		message = user_input
 		if 
@@ -21,4 +39,4 @@ class MicroBlogger
 end
 
 blogger = MicroBlogger.new
-blogger.tweet
+blogger.run
